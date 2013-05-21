@@ -8,6 +8,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -62,7 +65,20 @@ public class Test {
 		r.accept(MediaType.APPLICATION_JSON_TYPE,MediaType.APPLICATION_XML_TYPE);
 		r.header("X-FOO", "BAR");
 		String json = r.get(String.class);
+
+		JSONObject jsonObject = JSONObject.fromObject(json);  
+		//JSONArray users = jsonObject.getJSONArray("people");
 		
+		/*for (int i = 0; i < users.size(); ++i) {
+			JSONObject user = users.getJSONObject(i);
+			String userName = user.getString("userName");
+			String firstName = user.getString("firstName");
+			String lastName = user.getString("lastName");
+			String jobtitle = user.getString("jobtitle");
+			boolean isGuest = false;
+			Users[i] = new User(userName,firstName,lastName,jobtitle,isGuest);
+		    int id = user.getInt("id");
+		}*/
 
 		return json;
 	}
