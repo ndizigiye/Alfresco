@@ -16,6 +16,6 @@
 <%!String voornaam="";%>
 The ticket <%=t.getTicket()%> <br>
 
-<%=t.getUsers()%>
+<%=t.getUsers().getJobtitle()%>
 </body>
 </html>
