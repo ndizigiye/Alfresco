@@ -21,6 +21,6 @@ for (int i = 0; i < users.size(); ++i) {
     voornaam = user.getString("id");
 }
 */%>
-<%=t.getUsers()%>
+<%//=t.getUsers()%>
 </body>
 </html>
