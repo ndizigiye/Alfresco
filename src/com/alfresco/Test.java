@@ -28,7 +28,7 @@ public class Test {
 	static String password = "bowmnhgdx4";
 	static String ticket = "";
 	static Client c = Client.create();
-	User[] Users;
+	static public User[] Users;
 
 	public Test(){
 		
@@ -59,7 +59,7 @@ public class Test {
    
 	}
 
-	public User getUsers() {
+	public User[] getUsers() {
 		
 		String resource_url = url+"/alfresco/service/api/people"+"?alf_ticket="+ticket;
 		WebResource r = c.resource(resource_url);
@@ -69,19 +69,20 @@ public class Test {
 
 		JSONObject jsonObject = JSONObject.fromObject(json);  
 		JSONArray users = jsonObject.getJSONArray("people");
+		int a = users.size();
 		
 		for (int i = 0; i < users.size(); ++i) {
-			JSONObject user = users.getJSONObject(i);
+			JSONObject user = users.getJSONObject(0);
 			String userName = user.getString("userName");
 			String firstName = user.getString("firstName");
 			String lastName = user.getString("lastName");
 			String jobtitle = user.getString("jobtitle");
 			boolean isGuest = false;
-			Users[i] = new User(userName,firstName,lastName,jobtitle,isGuest);
+			Users[0] = new User(userName,firstName,lastName,jobtitle,isGuest);
 
 		}
-
-		return Users[0];
+		System.out.println(Users);
+		return Users;
 	}
 
 }
