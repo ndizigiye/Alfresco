@@ -24,6 +24,7 @@ public class Test {
 	static String username = "admin";
 	static String password = "bowmnhgdx4";
 	static String ticket = "";
+	static Client c = Client.create();
 
 	public Test(){
 		
@@ -37,8 +38,8 @@ public class Test {
 	}
 
 	public String getTicket() throws ParserConfigurationException, SAXException, IOException {
+		
 		String resource_url = url+"/alfresco/service/api/login?u="+username+"&pw="+password;
-		Client c = Client.create();
 		WebResource r = c.resource(resource_url);
 		r.accept(MediaType.APPLICATION_JSON_TYPE,MediaType.APPLICATION_XML_TYPE);
 		r.header("X-FOO", "BAR");
@@ -55,8 +56,15 @@ public class Test {
 	}
 
 	public String getUsers() {
+		
+		String resource_url = url+"/alfresco/service/api/people"+"?alf_ticket="+ticket;
+		WebResource r = c.resource(resource_url);
+		r.accept(MediaType.APPLICATION_JSON_TYPE,MediaType.APPLICATION_XML_TYPE);
+		r.header("X-FOO", "BAR");
+		String json = r.get(String.class);
+		
 
-		return null;
+		return json;
 	}
 
 }
