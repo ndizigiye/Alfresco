@@ -59,19 +59,13 @@ public class Test {
    
 	}
 	
-	public void addUser(String username, String firstname, String lastname, String job, boolean guest){
+	public void addUser(User a){
 		
 		String resource_url = url+"/alfresco/service/api/people"+"?alf_ticket="+ticket;
 		WebResource r = c.resource(resource_url);
-		User a = new User(username,firstname,lastname,job, guest);
-		
 		JSONObject jsonObject = JSONObject.fromObject(a);
+		r.queryParam("test", "test").type(MediaType.APPLICATION_JSON_TYPE).post(String.class, jsonObject);
 		
-		String response = r.accept(
-		        MediaType.APPLICATION_JSON_TYPE,
-		        MediaType.APPLICATION_XML_TYPE).
-		        header("X-FOO", "BAR").
-		        post(String.class, jsonObject);
 	}
 
 	public User getUsers(int i) {
@@ -91,9 +85,10 @@ public class Test {
 			String userName = user.getString("userName");
 			String firstName = user.getString("firstName");
 			String lastName = user.getString("lastName");
+			String email = user.getString("email");
 			String jobtitle = user.getString("jobtitle");
 			boolean isGuest = false;
-			User a = new User(userName,firstName,lastName,jobtitle,isGuest);
+			User a = new User(userName,firstName,lastName,email,jobtitle,isGuest);
 
 		return a;
 	}

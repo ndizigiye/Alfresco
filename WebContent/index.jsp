@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <%@ page import="com.alfresco.User" %>
@@ -17,7 +15,17 @@
 The ticket <%=t.getTicket()%> <br>
 
 <%int a = 4;%>
+Gebruiker toevoegen
 
+<form action="add_user.jsp" method="GET">
+<input type="text" name="username"/>
+<input type="text" name="firstname"/>
+<input type="text" name="lastname"/>
+<input type="text" name="email"/>
+<input type="text" name="jobtitle"/>
+<input type="text" name="isguest"/>
+<input type="submit" value="Submit" />
+</form>
 Gebruikers <br>
 <% 
 
@@ -27,6 +35,7 @@ User user = t.getUsers(i);
 Username: <%=user.getUserName()%><br>
 Voornaam: <%=user.getFirstName()%><br>
 Achternaam: <%=user.getLastName()%><br>
+Email: <%=user.getEmail()%><br>
 Job: <%=user.getJobtitle()%><br>
 Is Gast?: <%=user.isGuest()%><br>
 <br><br>
@@ -34,6 +43,5 @@ Is Gast?: <%=user.isGuest()%><br>
     }
 
 %>
-
 </body>
 </html>
