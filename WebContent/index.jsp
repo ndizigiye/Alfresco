@@ -14,34 +14,43 @@
 <%!String voornaam="";%>
 The ticket <%=t.getTicket()%> <br>
 
-<%int a = 4;%>
-Gebruiker toevoegen
+<%int a = t.getAantalUser();%>
 
-<form action="add_user.jsp" method="GET">
-Username <input type="text" name="username"/><br>
-Firstname <input type="text" name="firstname"/><br>
-Lastname <input type="text" name="lastname"/><br>
-Email <input type="text" name="email"/><br>
-Jobtitle <input type="text" name="jobtitle"/><br>
-Is guest <input type="text" name="isguest"/><br>
-<input type="submit" value="Submit" />
-</form>
-Gebruikers <br>
+<a href="/Alfresco/add_form.jsp">Voeg hier een gebruiker toe</a> </br>
+
+<div class ="CSSTableGenerator">
+<table>
+<thead>
+    <tr>
+      <th>Username</th>
+      <th>Voornaam</th>
+      <th>Achternaam</th>
+      <th>Email</th>
+      <th>Functie</th>
+      <th>IsGast</th>
+      <th>Bewerken</th>
+      <th>Verwijderen</th>
+    </tr>
+  </thead>
 <% 
 
 for (int i=0; i<a; i++) {
 User user = t.getUsers(i);
 %>
-Username: <%=user.getUserName()%><a href="/Alfresco/delete_user.jsp?username=<%=user.getUserName()%>">Delete</a><a href="/Alfresco/edit_form.jsp?username=<%=user.getUserName()%>">Edit</a><br>
-Voornaam: <%=user.getFirstName()%><br>
-Achternaam: <%=user.getLastName()%><br>
-Email: <%=user.getEmail()%><br>
-Job: <%=user.getJobtitle()%><br>
-Is Gast?: <%=user.isGuest()%><br>
-<br><br>
+<tr>
+<td><%=user.getUserName()%></td>
+<td><%=user.getFirstName()%></td>
+<td><%=user.getLastName()%></td>
+<td><%=user.getEmail()%></td>
+<td><%=user.getJobtitle()%></td>
+<td><%=user.isGuest()%></td>
+<td><a href="/Alfresco/edit_form.jsp?username=<%=user.getUserName()%>">Edit</a></td>
+<td><a href="/Alfresco/delete_user.jsp?username=<%=user.getUserName()%>">Delete</a></td>
+</tr>
 <%
     }
-
 %>
+</table>
+</div>
 </body>
 </html>

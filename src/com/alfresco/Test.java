@@ -114,5 +114,20 @@ public class Test {
 
 		return a;
 	}
+	
+	public int getAantalUser(){
+		String resource_url = url+"/alfresco/service/api/people"+"?alf_ticket="+ticket;
+		WebResource r = c.resource(resource_url);
+		r.accept(MediaType.APPLICATION_JSON_TYPE,MediaType.APPLICATION_XML_TYPE);
+		r.header("X-FOO", "BAR");
+		String json = r.get(String.class);
+
+		JSONObject jsonObject = JSONObject.fromObject(json);  
+		JSONArray users = jsonObject.getJSONArray("people");
+		
+		int size = users.size();
+		
+		return size;
+	}
 
 }
