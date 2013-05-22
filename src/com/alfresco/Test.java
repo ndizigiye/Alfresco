@@ -28,7 +28,7 @@ public class Test {
 	static String password = "bowmnhgdx4";
 	static String ticket = "";
 	static Client c = Client.create();
-	static public User[] Users;
+	static public int aantalUsers;
 
 	public Test(){
 		
@@ -58,8 +58,20 @@ public class Test {
 		return ticket;
    
 	}
+	
+	public void addUser(String username, String firstname, String job, boolean guest){
+		
+		String resource_url = url+"/alfresco/service/api/people"+"?alf_ticket="+ticket;
+		String request = '{'+
+            '"userName": "abeecher",'+
+            '"firstName": "Alice",'+
+            '"lastName": "Beecher" }'+
+            '"email": "abeecher@example.com",';
+		
+		
+	}
 
-	public User[] getUsers() {
+	public User getUsers(int i) {
 		
 		String resource_url = url+"/alfresco/service/api/people"+"?alf_ticket="+ticket;
 		WebResource r = c.resource(resource_url);
@@ -69,20 +81,18 @@ public class Test {
 
 		JSONObject jsonObject = JSONObject.fromObject(json);  
 		JSONArray users = jsonObject.getJSONArray("people");
-		int a = users.size();
 		
-		for (int i = 0; i < users.size(); ++i) {
-			JSONObject user = users.getJSONObject(0);
+		aantalUsers = users.size();
+
+			JSONObject user = users.getJSONObject(i);
 			String userName = user.getString("userName");
 			String firstName = user.getString("firstName");
 			String lastName = user.getString("lastName");
 			String jobtitle = user.getString("jobtitle");
 			boolean isGuest = false;
-			Users[0] = new User(userName,firstName,lastName,jobtitle,isGuest);
+			User a = new User(userName,firstName,lastName,jobtitle,isGuest);
 
-		}
-		System.out.println(Users);
-		return Users;
+		return a;
 	}
 
 }

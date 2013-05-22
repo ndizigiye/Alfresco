@@ -16,14 +16,24 @@
 <%!String voornaam="";%>
 The ticket <%=t.getTicket()%> <br>
 
-<%
-User[] Users;
-Users = t.getUsers();
-for (int i=0; i<Users.length; i++) {
+<%int a = 4;%>
+
+Gebruikers <br>
+<% 
+
+for (int i=0; i<a; i++) {
+User user = t.getUsers(i);
 %>
-<%=Users[i].getJobtitle()%>
+Username: <%=user.getUserName()%><br>
+Voornaam: <%=user.getFirstName()%><br>
+Achternaam: <%=user.getLastName()%><br>
+Job: <%=user.getJobtitle()%><br>
+Is Gast?: <%=user.isGuest()%><br>
+<br><br>
 <%
     }
+
 %>
+
 </body>
 </html>
