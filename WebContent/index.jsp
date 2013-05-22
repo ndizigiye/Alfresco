@@ -32,7 +32,7 @@ Gebruikers <br>
 for (int i=0; i<a; i++) {
 User user = t.getUsers(i);
 %>
-Username: <%=user.getUserName()%><a href="/Alfresco/delete_user.jsp?username=<%=user.getUserName()%>">Delete</a><br>
+Username: <%=user.getUserName()%><a href="/Alfresco/delete_user.jsp?username=<%=user.getUserName()%>">Delete</a><a href="/Alfresco/edit_form.jsp?username=<%=user.getUserName()%>">Edit</a><br>
 Voornaam: <%=user.getFirstName()%><br>
 Achternaam: <%=user.getLastName()%><br>
 Email: <%=user.getEmail()%><br>
