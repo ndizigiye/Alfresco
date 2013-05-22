@@ -80,6 +80,15 @@ public class Test {
 		WebResource r = c.resource(resource_url);
 		r.type(MediaType.APPLICATION_JSON_TYPE).delete();	
 	}
+	
+	public void editUser(String username, User a){
+		
+		String resource_url = url+"/alfresco/service/api/people/"+username+"?alf_ticket="+ticket;
+		WebResource r = c.resource(resource_url);
+		JSONObject jsonObject = JSONObject.fromObject(a);
+		String content = jsonObject.toString();
+		r.type(MediaType.APPLICATION_JSON_TYPE).put(String.class, content);
+	}
 
 	public User getUsers(int i) {
 		
