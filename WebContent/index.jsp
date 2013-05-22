@@ -7,12 +7,13 @@
 
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>JSP with the current date</title>
+<title>JSP witd tde current date</title>
+<link rel="stylesheet" type="text/css" href="home.css">
 </head>
 <body>
 <%!Test t = new Test();%>
 <%!String voornaam="";%>
-The ticket <%=t.getTicket()%> <br>
+tde ticket <%=t.getTicketSchool()%> <br>
 
 <%int a = t.getAantalUser();%>
 
@@ -20,18 +21,16 @@ The ticket <%=t.getTicket()%> <br>
 
 <div class ="CSSTableGenerator">
 <table>
-<thead>
     <tr>
-      <th>Username</th>
-      <th>Voornaam</th>
-      <th>Achternaam</th>
-      <th>Email</th>
-      <th>Functie</th>
-      <th>IsGast</th>
-      <th>Bewerken</th>
-      <th>Verwijderen</th>
+      <td>Username</td>
+      <td>Voornaam</td>
+      <td>Achternaam</td>
+      <td>Email</td>
+      <td>Functie</td>
+      <td>IsGast</td>
+      <td>Bewerken</td>
+      <td>Verwijderen</td>
     </tr>
-  </thead>
 <% 
 
 for (int i=0; i<a; i++) {

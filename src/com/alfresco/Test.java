@@ -14,8 +14,6 @@ import net.sf.json.JSONObject;
 
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -25,9 +23,9 @@ import com.sun.jersey.api.client.WebResource;
 public class Test {
 
 	// geef hier je gegevens
-	static String url = "http://alfrescocommunity-42337-ndiarmand.cloudwaysapps.com";
-	static String username = "admin";
-	static String password = "bowmnhgdx4";
+	static String url = "http://145.89.191.111:8080";
+	static String username = "kemal";
+	static String password = "kk07032013";
 	static String ticket = "";
 	static Client c = Client.create();
 	static public int aantalUsers;
@@ -36,7 +34,7 @@ public class Test {
 	public Test(){
 		
 		try {
-			ticket = this.getTicket();
+			ticket = this.getTicketSchool();
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,6 +55,22 @@ public class Test {
 	    is.setCharacterStream(new StringReader(xml));
 	    Document doc = db.parse(is);
 	    String ticket = doc.getElementsByTagName("ticket").item(0).getTextContent();
+	    
+		return ticket;
+   
+	}
+	
+	public String getTicketSchool() throws ParserConfigurationException, SAXException, IOException {
+		
+		String resource_url = url+"/alfresco/service/api/login";
+		String login = "{ \"username\":\""+username+"\", \"password\":\""+password+"\"}";
+		WebResource r = c.resource(resource_url);
+		r.type(MediaType.APPLICATION_JSON_TYPE);
+		String json = r.post(String.class, login);
+		
+		JSONObject jsonObject = JSONObject.fromObject(json);
+		JSONObject data = jsonObject.getJSONObject("data");
+		 String ticket = data.getString("ticket");
 	    
 		return ticket;
    
