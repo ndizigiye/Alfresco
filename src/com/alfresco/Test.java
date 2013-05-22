@@ -11,6 +11,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -29,6 +31,7 @@ public class Test {
 	static String ticket = "";
 	static Client c = Client.create();
 	static public int aantalUsers;
+	
 
 	public Test(){
 		
@@ -58,14 +61,24 @@ public class Test {
 		return ticket;
    
 	}
+
+	
 	
 	public void addUser(User a){
 		
 		String resource_url = url+"/alfresco/service/api/people"+"?alf_ticket="+ticket;
 		WebResource r = c.resource(resource_url);
 		JSONObject jsonObject = JSONObject.fromObject(a);
-		r.queryParam("test", "test").type(MediaType.APPLICATION_JSON_TYPE).post(String.class, jsonObject);
+		String content = jsonObject.toString();
+		//r.queryParam("test", "test").type(MediaType.APPLICATION_JSON_TYPE).post(User.class, a);
+		r.type(MediaType.APPLICATION_JSON_TYPE).post(String.class, content);
 		
+	}
+	
+	public void deleteUser(String username){
+		String resource_url = url+"/alfresco/service/api/people/"+username+"?alf_ticket="+ticket;
+		WebResource r = c.resource(resource_url);
+		r.type(MediaType.APPLICATION_JSON_TYPE).delete();	
 	}
 
 	public User getUsers(int i) {

@@ -18,12 +18,12 @@ The ticket <%=t.getTicket()%> <br>
 Gebruiker toevoegen
 
 <form action="add_user.jsp" method="GET">
-<input type="text" name="username"/>
-<input type="text" name="firstname"/>
-<input type="text" name="lastname"/>
-<input type="text" name="email"/>
-<input type="text" name="jobtitle"/>
-<input type="text" name="isguest"/>
+Username <input type="text" name="username"/><br>
+Firstname <input type="text" name="firstname"/><br>
+Lastname <input type="text" name="lastname"/><br>
+Email <input type="text" name="email"/><br>
+Jobtitle <input type="text" name="jobtitle"/><br>
+Is guest <input type="text" name="isguest"/><br>
 <input type="submit" value="Submit" />
 </form>
 Gebruikers <br>
@@ -32,7 +32,7 @@ Gebruikers <br>
 for (int i=0; i<a; i++) {
 User user = t.getUsers(i);
 %>
-Username: <%=user.getUserName()%><br>
+Username: <%=user.getUserName()%><a href="/Alfresco/delete_user.jsp?username=<%=user.getUserName()%>">Delete</a><br>
 Voornaam: <%=user.getFirstName()%><br>
 Achternaam: <%=user.getLastName()%><br>
 Email: <%=user.getEmail()%><br>
